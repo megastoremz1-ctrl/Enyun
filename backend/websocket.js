@@ -15,14 +15,8 @@ class WebSocketServer {
 
     const acceptKey = crypto.createHash('sha1').update(key + WS_MAGIC_STRING).digest('base64');
 
-    const responseHeaders = [
-      'HTTP/1.1 101 Switching Protocols',
-      'Upgrade: websocket',
-      'Connection: Upgrade',
-      `Sec-WebSocket-Accept: ${acceptKey}`,
-      '', ''
-    ].join('\r
-');
+    const responseHeaders = 'HTTP/1.1 101 Switching Protocols\r Upgrade: websocket\r Connection: Upgrade\r Sec-WebSocket-Accept: ' + acceptKey + '\r \r ';
+
 
     socket.write(responseHeaders);
     this.clients.add(socket);
