@@ -1,0 +1,10 @@
+# Runtime data files
+backend/data/gifts.json
+backend/data/stats.json
+backend/data/config.json
+
+# Keep data directory
+!backend/data/.gitkeep
+
+# Dependencies
+node_modules/

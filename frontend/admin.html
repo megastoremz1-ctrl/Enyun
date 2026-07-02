@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Admin - TikTok Gift Display</title>
+    <style>
+        .admin-container { max-width: 600px; margin: 2rem auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+        .admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+        .admin-header h1 { font-size: 1.5rem; font-weight: 700; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .back-link { color: var(--neon-cyan); text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease; }
+        .back-link:hover { color: var(--accent-magenta); text-shadow: 0 0 8px rgba(255, 0, 255, 0.4); }
+        .admin-form { display: flex; flex-direction: column; gap: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Configuracoes</h1>
+            <a href="/" class="back-link">&larr; Voltar ao Dashboard</a>
+        </div>
+        <div class="card">
+            <form class="admin-form" id="adminForm">
+                <div class="form-group">
+                    <label for="adminUsername">TikTok Username</label>
+                    <input type="text" id="adminUsername" placeholder="@username">
+                </div>
+                <div class="form-group">
+                    <label for="adminMinGift">Valor minimo do gift: <span id="adminMinGiftValue">0</span></label>
+                    <input type="range" id="adminMinGift" min="0" max="1000" value="0">
+                </div>
+                <div class="form-group">
+                    <label class="toggle-label"><input type="checkbox" id="adminSound" checked><span>Som ativado</span></label>
+                </div>
+                <div class="form-group">
+                    <label class="toggle-label"><input type="checkbox" id="adminAnimations" checked><span>Animacoes ativadas</span></label>
+                </div>
+                <div class="form-group">
+                    <label for="adminOverlayDuration">Duracao do overlay: <span id="adminDurationValue">5</span>s</label>
+                    <input type="range" id="adminOverlayDuration" min="1" max="30" value="5">
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar Configuracoes</button>
+            </form>
+        </div>
+    </div>
+    <div class="notification" id="notification"></div>
+    <script src="/config.js"></script>
+    <script>
+        (function () {
+            'use strict';
+            var form = document.getElementById('adminForm');
+            var notification = document.getElementById('notification');
+            var minGiftSlider = document.getElementById('adminMinGift');
+            var minGiftValue = document.getElementById('adminMinGiftValue');
+            var durationSlider = document.getElementById('adminOverlayDuration');
+            var durationValue = document.getElementById('adminDurationValue');
+            var baseUrl = window.APP_CONFIG ? window.APP_CONFIG.BACKEND_URL : '';
+
+            minGiftSlider.addEventListener('input', function () { minGiftValue.textContent = this.value; });
+            durationSlider.addEventListener('input', function () { durationValue.textContent = this.value; });
+
+            fetch(baseUrl + '/api/config')
+                .then(function (r) { return r.json(); })
+                .then(function (config) {
+                    document.getElementById('adminUsername').value = config.tiktokUsername || '';
+                    minGiftSlider.value = config.minGiftValue || 0;
+                    minGiftValue.textContent = config.minGiftValue || 0;
+                    document.getElementById('adminSound').checked = config.enableSound !== false;
+                    document.getElementById('adminAnimations').checked = config.enableAnimations !== false;
+                    durationSlider.value = config.overlayDuration || 5;
+                    durationValue.textContent = config.overlayDuration || 5;
+                }).catch(function () {});
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var configData = {
+                    tiktokUsername: document.getElementById('adminUsername').value,
+                    minGiftValue: parseInt(minGiftSlider.value, 10) || 0,
+                    enableSound: document.getElementById('adminSound').checked,
+                    enableAnimations: document.getElementById('adminAnimations').checked,
+                    overlayDuration: parseInt(durationSlider.value, 10) || 5
+                };
+                fetch(baseUrl + '/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(configData) })
+                .then(function (r) { if (r.ok) return r.json(); throw new Error('Failed'); })
+                .then(function () { showNotification('Configuracoes salvas!', 'success'); })
+                .catch(function () { showNotification('Erro ao salvar', 'error'); });
+            });
+
+            function showNotification(message, type) {
+                notification.textContent = message;
+                notification.className = 'notification ' + type;
+                setTimeout(function () { notification.className = 'notification'; }, 3000);
+            }
+        })();
+    </script>
+</body>
+</html>

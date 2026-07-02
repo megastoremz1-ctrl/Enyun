@@ -1,0 +1,14 @@
+{
+  "name": "enyun-backend",
+  "version": "1.0.0",
+  "description": "TikTok Gift Display - Backend Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [],
+  "license": "ISC"
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Gift Display - Dark Neon Futurista</title>
+    <link rel="stylesheet" href="/css/overlay.css">
+</head>
+<body>
+    <div id="bgLayer" class="bg-layer">
+        <div class="stars"></div>
+        <div class="stars stars--medium"></div>
+        <div class="stars stars--large"></div>
+        <div class="nebula nebula--1"></div>
+        <div class="nebula nebula--2"></div>
+        <div class="particles"></div>
+    </div>
+
+    <div id="alertContainer" class="alert-container"></div>
+
+    <div id="hallOfFame" class="hall-of-fame">
+        <div class="hof-title">Hall of Fame</div>
+        <div id="hofList" class="hof-list"></div>
+    </div>
+
+    <div id="statsBar" class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-icon">&#x1F4B0;</span>
+            <span class="stat-label">Total Coins:</span>
+            <span id="totalCoins" class="stat-value">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-icon">&#x1F381;</span>
+            <span class="stat-label">Total Gifts:</span>
+            <span id="totalGifts" class="stat-value">0</span>
+        </div>
+    </div>
+
+    <div id="recentFeed" class="recent-feed">
+        <div class="feed-title">Presentes Recentes</div>
+        <div id="feedList" class="feed-list"></div>
+    </div>
+
+    <script src="/config.js"></script>
+    <script src="/js/overlay.js"></script>
+</body>
+</html>

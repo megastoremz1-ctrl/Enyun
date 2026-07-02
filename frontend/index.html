@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time TikTok Live gift display and statistics">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="GiftDisplay">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg">
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>TikTok Gift Display</title>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <h1 class="app-title">TikTok Gift Display</h1>
+        </div>
+        <div class="header-right">
+            <a href="/overlay.html" class="btn-overlay-link" target="_blank" title="Abrir Overlay para OBS">Overlay</a>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot offline"></span>
+                <span class="status-text">Offline</span>
+            </div>
+            <button class="btn btn-icon" id="fullscreenBtn" title="Fullscreen">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+            </button>
+            <button class="btn btn-icon" id="settingsBtn" title="Configuracoes">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <section class="card last-gift-card" id="lastGiftSection">
+            <h2 class="card-title">Ultimo Gift</h2>
+            <div class="last-gift-display" id="lastGiftDisplay">
+                <div class="gift-emoji" id="lastGiftEmoji">&#127873;</div>
+                <div class="gift-info">
+                    <span class="gift-name" id="lastGiftName">Aguardando...</span>
+                    <span class="gift-user" id="lastGiftUser">-</span>
+                    <span class="gift-count" id="lastGiftCount"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card hall-of-fame-card" id="hallOfFameSection">
+            <h2 class="card-title">Hall of Fame</h2>
+            <div class="hall-of-fame-grid" id="hallOfFameGrid">
+                <p class="empty-state">Aguardando gifters...</p>
+            </div>
+        </section>
+
+        <section class="card history-card">
+            <h2 class="card-title">Historico</h2>
+            <div class="history-list" id="historyList">
+                <p class="empty-state">Nenhum gift recebido ainda</p>
+            </div>
+        </section>
+
+        <section class="card ranking-card">
+            <h2 class="card-title">Top Gifters</h2>
+            <div class="ranking-list" id="rankingList">
+                <p class="empty-state">Nenhum gifter ainda</p>
+            </div>
+        </section>
+
+        <section class="card stats-card">
+            <h2 class="card-title">Estatisticas</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Gifts</span>
+                    <span class="stat-value" id="statTotalGifts">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Coins</span>
+                    <span class="stat-value" id="statTotalCoins">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Maior Gift</span>
+                    <span class="stat-value" id="statTopGift">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Maior Gifter</span>
+                    <span class="stat-value" id="statTopGifter">-</span>
+                </div>
+            </div>
+            <button class="btn btn-secondary" id="exportCsvBtn">Exportar CSV</button>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Configuracoes</h2>
+                <button class="btn btn-icon modal-close" id="closeSettingsBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="settingUsername">TikTok Username</label>
+                    <input type="text" id="settingUsername" placeholder="@username">
+                </div>
+                <div class="form-group">
+                    <label for="settingMinGift">Valor minimo do gift: <span id="minGiftValue">0</span></label>
+                    <input type="range" id="settingMinGift" min="0" max="1000" value="0">
+                </div>
+                <div class="form-group">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="settingSound" checked>
+                        <span>Som ativado</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="settingAnimations" checked>
+                        <span>Animacoes ativadas</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="settingOverlayDuration">Duracao do overlay: <span id="overlayDurationValue">5</span>s</label>
+                    <input type="range" id="settingOverlayDuration" min="1" max="30" value="5">
+                </div>
+                <button class="btn btn-primary" id="saveSettingsBtn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/config.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
