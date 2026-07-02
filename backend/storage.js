@@ -148,8 +148,7 @@ function exportCSV() {
       g.diamondCount
     ].join(',');
   });
-  return [header, ...rows].join('
-');
+  return [header, ...rows].join(' ');
 }
 
 module.exports = { saveGift, getHistory, getTopGifters, getStats, exportCSV };
