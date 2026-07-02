@@ -6,7 +6,7 @@ const path = require('path');
 const url = require('url');
 
 const { WebSocketServer } = require('./websocket');
-const { TikTokMock } = require('./tiktok-mock');
+const { TikTokReal } = require('./tiktok-real');
 const storage = require('./storage');
 const config = require('./config');
 
@@ -21,7 +21,7 @@ const MIME_TYPES = {
 };
 
 const wsServer = new WebSocketServer();
-const tiktok = new TikTokMock();
+const tiktok = new TikTokReal();
 
 tiktok.on('gift', (giftData) => {
   const settings = config.get();
