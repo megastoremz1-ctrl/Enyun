@@ -12,14 +12,12 @@ class TikTokReal extends EventEmitter {
     this._reconnectTimeout = null;
   }
 
-     this._connection = new WebcastPushConnection(username, {
-      processInitialData: true,
-      enableExtendedGiftInfo: true,
-      enableWebsocketUpgrade: true,
-      requestPollingIntervalMs: 2000,
-      signApiKey: undefined
-    });
-
+  connect(username) {
+    this._username = username;
+    if (!username) {
+      console.log('[TikTok] No username provided');
+      return Promise.resolve({ isConnected: false });
+    }
 
     console.log('[TikTok] Connecting to @' + username + '...');
 
@@ -30,17 +28,15 @@ class TikTokReal extends EventEmitter {
       requestPollingIntervalMs: 2000
     });
 
-    this._connection.connect()
-      .then(state => {
-        this._connected = true;
-        console.log('[TikTok] Connected! Room ID: ' + state.roomId);
-      })
-      .catch(err => {
-        console.log('[TikTok] Connection failed: ' + err.message);
-        this._scheduleReconnect();
-      });
+    this._connection.connect().then(function(state) {
+      this._connected = true;
+      console.log('[TikTok] Connected! Room ID: ' + state.roomId);
+    }.bind(this)).catch(function(err) {
+      console.log('[TikTok] Connection failed: ' + err.message);
+      this._scheduleReconnect();
+    }.bind(this));
 
-    this._connection.on('gift', (data) => {
+    this._connection.on('gift', function(data) {
       if (data.giftType === 1 && !data.repeatEnd) {
         return;
       }
@@ -53,16 +49,16 @@ class TikTokReal extends EventEmitter {
         diamondCount: data.diamondCount || 0
       };
       this.emit('gift', giftData);
-    });
+    }.bind(this));
 
-    this._connection.on('disconnected', () => {
+    this._connection.on('disconnected', function() {
       console.log('[TikTok] Disconnected');
       this._connected = false;
       this._scheduleReconnect();
-    });
+    }.bind(this));
 
-    this._connection.on('error', (err) => {
-      console.log('[TikTok] Error: ' + err.message);
+    this._connection.on('error', function(err) {
+      console.log('[TikTok] Error: ' + (err ? err.message : 'unknown'));
     });
 
     return Promise.resolve({ isConnected: true });
@@ -84,10 +80,10 @@ class TikTokReal extends EventEmitter {
   _scheduleReconnect() {
     if (this._reconnectTimeout) return;
     console.log('[TikTok] Reconnecting in 30 seconds...');
-    this._reconnectTimeout = setTimeout(() => {
+    this._reconnectTimeout = setTimeout(function() {
       this._reconnectTimeout = null;
       this.connect(this._username);
-    }, 30000);
+    }.bind(this), 30000);
   }
 }
 
