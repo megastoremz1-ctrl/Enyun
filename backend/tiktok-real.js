@@ -21,12 +21,19 @@ class TikTokReal extends EventEmitter {
 
     console.log('[TikTok] Connecting to @' + username + '...');
 
-    this._connection = new WebcastPushConnection(username, {
+    var options = {
       processInitialData: true,
       enableExtendedGiftInfo: true,
       enableWebsocketUpgrade: true,
       requestPollingIntervalMs: 2000
-    });
+    };
+
+    if (process.env.TIKTOK_SESSION_ID) {
+      options.sessionId = process.env.TIKTOK_SESSION_ID;
+      console.log('[TikTok] Using session ID for authentication');
+    }
+
+    this._connection = new WebcastPushConnection(username, options);
 
     this._connection.connect().then(function(state) {
       this._connected = true;
