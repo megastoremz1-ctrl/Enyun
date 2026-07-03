@@ -70,7 +70,22 @@ const server = http.createServer(async (req, res) => {
   if (pathname === '/api/top-gifters' && req.method === 'GET') { const limit = parseInt(parsedUrl.query.limit) || 10; res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(storage.getTopGifters(limit))); return; }
   if (pathname === '/api/export-csv' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'text/csv', 'Content-Disposition': 'attachment; filename="gifts.csv"' }); res.end(storage.exportCSV()); return; }
   if (pathname === '/api/config' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(config.get())); return; }
-  if (pathname === '/api/config' && req.method === 'POST') { try { const body = await parseBody(req); const updated = config.save(body); res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(updated)); } catch (err) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: err.message })); } return; }
+    if (pathname === '/api/config' && req.method === 'POST') {
+    try {
+      const body = await parseBody(req);
+      const updated = config.save(body);
+      if (updated.tiktokUsername) {
+        tiktok.disconnect();
+        tiktok.connect(updated.tiktokUsername);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(updated));
+    } catch (err) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
 
   if (!fs.existsSync(FRONTEND_DIR)) {
     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -85,10 +100,16 @@ const server = http.createServer(async (req, res) => {
 server.on('upgrade', (req, socket, head) => { wsServer.handleUpgrade(req, socket, head); });
 
 server.listen(PORT, () => {
-  console.log(`[Server] Running on http://localhost:${PORT}`);
-  console.log(`[Server] WebSocket available at ws://localhost:${PORT}`);
+  console.log('[Server] Running on http://localhost:' + PORT);
+  console.log('[Server] WebSocket available at ws://localhost:' + PORT);
+
   const settings = config.get();
-  tiktok.connect(settings.tiktokUsername || 'demo_streamer');
+  const username = settings.tiktokUsername || '';
+  if (username) {
+    tiktok.connect(username);
+  } else {
+    console.log('[Server] No TikTok username configured. Set it via /api/config');
+  }
 });
 
 process.on('SIGINT', () => { tiktok.disconnect(); server.close(); process.exit(0); });
