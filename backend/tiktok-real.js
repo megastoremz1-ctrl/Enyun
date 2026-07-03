@@ -12,12 +12,14 @@ class TikTokReal extends EventEmitter {
     this._reconnectTimeout = null;
   }
 
-  connect(username) {
-    this._username = username;
-    if (!username) {
-      console.log('[TikTok] No username provided, waiting...');
-      return Promise.resolve({ isConnected: false });
-    }
+     this._connection = new WebcastPushConnection(username, {
+      processInitialData: true,
+      enableExtendedGiftInfo: true,
+      enableWebsocketUpgrade: true,
+      requestPollingIntervalMs: 2000,
+      signApiKey: undefined
+    });
+
 
     console.log('[TikTok] Connecting to @' + username + '...');
 
