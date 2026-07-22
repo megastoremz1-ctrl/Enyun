@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="dragonBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff4500"/>
+      <stop offset="100%" style="stop-color:#8b0000"/>
+    </linearGradient>
+    <linearGradient id="dragonBelly" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ff8c00"/>
+    </linearGradient>
+  </defs>
+  <!-- Wings -->
+  <path d="M40 80 Q20 50 35 30 L55 55 Q45 45 50 35 L65 60 Q55 50 60 40 L75 65 Z" fill="#ff6030" stroke="#cc3300" stroke-width="1"/>
+  <path d="M160 80 Q180 50 165 30 L145 55 Q155 45 150 35 L135 60 Q145 50 140 40 L125 65 Z" fill="#ff6030" stroke="#cc3300" stroke-width="1"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="40" ry="45" fill="url(#dragonBody)"/>
+  <!-- Belly -->
+  <ellipse cx="100" cy="130" rx="25" ry="30" fill="url(#dragonBelly)"/>
+  <!-- Belly lines -->
+  <path d="M82 115 Q100 118 118 115" fill="none" stroke="#e6a000" stroke-width="1"/>
+  <path d="M80 125 Q100 128 120 125" fill="none" stroke="#e6a000" stroke-width="1"/>
+  <path d="M82 135 Q100 138 118 135" fill="none" stroke="#e6a000" stroke-width="1"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="65" rx="25" ry="22" fill="url(#dragonBody)"/>
+  <!-- Horns -->
+  <path d="M80 50 Q75 35 72 25" fill="none" stroke="#cc3300" stroke-width="4" stroke-linecap="round"/>
+  <path d="M120 50 Q125 35 128 25" fill="none" stroke="#cc3300" stroke-width="4" stroke-linecap="round"/>
+  <!-- Eyes -->
+  <ellipse cx="90" cy="62" rx="5" ry="6" fill="#ffd700"/>
+  <ellipse cx="110" cy="62" rx="5" ry="6" fill="#ffd700"/>
+  <ellipse cx="90" cy="63" rx="3" ry="4" fill="#111"/>
+  <ellipse cx="110" cy="63" rx="3" ry="4" fill="#111"/>
+  <!-- Nostrils -->
+  <circle cx="95" cy="75" r="3" fill="#800000"/>
+  <circle cx="105" cy="75" r="3" fill="#800000"/>
+  <!-- Fire puffs from nostrils -->
+  <circle cx="92" cy="80" r="2" fill="rgba(255,100,0,0.6)"/>
+  <circle cx="108" cy="80" r="2" fill="rgba(255,100,0,0.6)"/>
+  <!-- Tail -->
+  <path d="M60 140 Q40 155 35 145 Q30 160 40 165 L50 155" fill="#ff4500" stroke="#cc3300" stroke-width="1"/>
+  <!-- Spikes along back -->
+  <polygon points="95,42 100,30 105,42" fill="#ffd700"/>
+  <polygon points="90,44 95,35 100,44" fill="#ffd700" opacity="0.8"/>
+  <polygon points="100,44 105,35 110,44" fill="#ffd700" opacity="0.8"/>
+  <!-- Feet -->
+  <ellipse cx="80" cy="165" rx="12" ry="8" fill="#cc3300"/>
+  <ellipse cx="120" cy="165" rx="12" ry="8" fill="#cc3300"/>
+  <!-- Claws -->
+  <circle cx="73" cy="168" r="3" fill="#ffd700"/>
+  <circle cx="80" cy="170" r="3" fill="#ffd700"/>
+  <circle cx="87" cy="168" r="3" fill="#ffd700"/>
+  <circle cx="113" cy="168" r="3" fill="#ffd700"/>
+  <circle cx="120" cy="170" r="3" fill="#ffd700"/>
+  <circle cx="127" cy="168" r="3" fill="#ffd700"/>
+  <!-- Glow -->
+  <circle cx="100" cy="100" r="60" fill="rgba(255,69,0,0.05)"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
+  <defs>
+    <linearGradient id="eggGrad100" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff"/>
+      <stop offset="50%" style="stop-color:#ff6b00"/>
+      <stop offset="100%" style="stop-color:#ff2200"/>
+    </linearGradient>
+    <radialGradient id="innerGlow100" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(255,255,200,0.8)"/>
+      <stop offset="60%" style="stop-color:rgba(255,150,0,0.4)"/>
+      <stop offset="100%" style="stop-color:rgba(255,50,0,0)"/>
+    </radialGradient>
+  </defs>
+  <!-- Cracked egg shell pieces -->
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggGrad100)" stroke="#ff2200" stroke-width="3"/>
+  <ellipse cx="100" cy="145" rx="65" ry="80" fill="url(#innerGlow100)"/>
+  <!-- Heavy cracks -->
+  <path d="M80 48 L90 65 L78 78 L88 95 L80 108 L88 120" fill="none" stroke="rgba(200,0,0,0.8)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M120 52 L112 70 L122 82 L114 98 L122 112" fill="none" stroke="rgba(200,0,0,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M68 90 L78 100 L72 112 L80 122" fill="none" stroke="rgba(200,0,0,0.6)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M132 88 L124 98 L130 110" fill="none" stroke="rgba(200,0,0,0.6)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Flying pieces -->
+  <polygon points="85,45 92,50 88,55" fill="#ffe0c0" stroke="#ff8800" stroke-width="1"/>
+  <polygon points="115,48 120,54 113,56" fill="#ffe0c0" stroke="#ff8800" stroke-width="1"/>
+  <!-- Glow particles -->
+  <circle cx="90" cy="75" r="4" fill="rgba(255,255,100,0.8)"/>
+  <circle cx="115" cy="80" r="3" fill="rgba(255,255,100,0.7)"/>
+  <circle cx="78" cy="100" r="3" fill="rgba(255,255,100,0.6)"/>
+  <circle cx="125" cy="95" r="2.5" fill="rgba(255,255,100,0.6)"/>
+  <circle cx="100" cy="60" r="3.5" fill="rgba(255,200,0,0.9)"/>
+</svg>

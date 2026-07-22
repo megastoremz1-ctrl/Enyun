@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
+  <defs>
+    <linearGradient id="eggGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f0ff"/>
+      <stop offset="50%" style="stop-color:#e8d5f5"/>
+      <stop offset="100%" style="stop-color:#d4b8e8"/>
+    </linearGradient>
+    <radialGradient id="eggShine" cx="35%" cy="30%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.8)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggGrad)" stroke="#c9a0dc" stroke-width="2"/>
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggShine)"/>
+  <!-- Spots -->
+  <circle cx="70" cy="120" r="8" fill="rgba(196,77,255,0.15)"/>
+  <circle cx="130" cy="160" r="10" fill="rgba(196,77,255,0.12)"/>
+  <circle cx="85" cy="180" r="6" fill="rgba(196,77,255,0.1)"/>
+  <circle cx="120" cy="110" r="5" fill="rgba(196,77,255,0.1)"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
+  <defs>
+    <linearGradient id="eggGrad75" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff0e0"/>
+      <stop offset="50%" style="stop-color:#ffb060"/>
+      <stop offset="100%" style="stop-color:#ff8030"/>
+    </linearGradient>
+    <radialGradient id="eggShine75" cx="35%" cy="30%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.5)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+    </radialGradient>
+    <radialGradient id="innerGlow75" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(255,200,0,0.3)"/>
+      <stop offset="100%" style="stop-color:rgba(255,100,0,0)"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggGrad75)" stroke="#ff6b00" stroke-width="2.5"/>
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggShine75)"/>
+  <ellipse cx="100" cy="145" rx="60" ry="75" fill="url(#innerGlow75)"/>
+  <!-- Major cracks -->
+  <path d="M85 50 L92 65 L82 75 L90 88 L85 98 L92 105" fill="none" stroke="rgba(180,80,0,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M115 55 L110 68 L118 78 L112 90 L118 98" fill="none" stroke="rgba(180,80,0,0.6)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M75 100 L82 108 L78 115" fill="none" stroke="rgba(180,80,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Glow particles -->
+  <circle cx="90" cy="80" r="3" fill="rgba(255,200,0,0.6)"/>
+  <circle cx="112" cy="72" r="2" fill="rgba(255,200,0,0.5)"/>
+  <circle cx="80" cy="105" r="2.5" fill="rgba(255,200,0,0.4)"/>
+</svg>

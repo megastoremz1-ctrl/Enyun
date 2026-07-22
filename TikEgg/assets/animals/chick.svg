@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="chickBody" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fff44f"/>
+      <stop offset="100%" style="stop-color:#ffc107"/>
+    </radialGradient>
+  </defs>
+  <!-- Body -->
+  <ellipse cx="100" cy="125" rx="45" ry="50" fill="url(#chickBody)"/>
+  <!-- Head -->
+  <circle cx="100" cy="75" r="32" fill="url(#chickBody)"/>
+  <!-- Eyes -->
+  <circle cx="88" cy="70" r="6" fill="#333"/>
+  <circle cx="112" cy="70" r="6" fill="#333"/>
+  <circle cx="90" cy="68" r="2.5" fill="#fff"/>
+  <circle cx="114" cy="68" r="2.5" fill="#fff"/>
+  <!-- Beak -->
+  <polygon points="100,78 93,85 107,85" fill="#ff8c00"/>
+  <!-- Wings -->
+  <ellipse cx="60" cy="120" rx="18" ry="25" fill="#ffdd00" transform="rotate(-15 60 120)"/>
+  <ellipse cx="140" cy="120" rx="18" ry="25" fill="#ffdd00" transform="rotate(15 140 120)"/>
+  <!-- Feet -->
+  <path d="M85 170 L80 185 M85 170 L85 185 M85 170 L90 185" stroke="#ff8c00" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M115 170 L110 185 M115 170 L115 185 M115 170 L120 185" stroke="#ff8c00" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <circle cx="78" cy="80" r="6" fill="rgba(255,100,100,0.3)"/>
+  <circle cx="122" cy="80" r="6" fill="rgba(255,100,100,0.3)"/>
+  <!-- Tuft -->
+  <path d="M95 45 Q100 30 105 45" fill="none" stroke="#ffc107" stroke-width="3" stroke-linecap="round"/>
+</svg>
