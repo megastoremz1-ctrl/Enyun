@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikEgg Overlay</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background transparent for OBS -->
+    <div id="overlay-container">
+        
+        <!-- Particles container -->
+        <canvas id="particles-canvas"></canvas>
+        
+        <!-- Main egg display -->
+        <div id="egg-section">
+            <div id="egg-glow"></div>
+            <div id="egg-container">
+                <img id="egg-image" src="assets/eggs/egg0.svg" alt="Egg">
+                <div id="crack-overlay"></div>
+            </div>
+            <div id="hatch-animal" class="hidden">
+                <img id="animal-image" src="assets/animals/chick.svg" alt="Animal">
+                <div id="animal-name"></div>
+                <div id="animal-rarity"></div>
+            </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div id="progress-section">
+            <div id="progress-bar-container">
+                <div id="progress-bar-bg">
+                    <div id="progress-bar-fill">
+                        <div id="progress-bar-shine"></div>
+                    </div>
+                </div>
+                <div id="progress-text">0%</div>
+            </div>
+        </div>
+
+        <!-- Gift info display -->
+        <div id="gift-section" class="hidden">
+            <div id="gift-popup">
+                <div id="gift-icon"></div>
+                <div id="gift-details">
+                    <div id="gift-name"></div>
+                    <div id="gift-user"></div>
+                </div>
+                <div id="gift-value"></div>
+            </div>
+        </div>
+
+        <!-- Gift history -->
+        <div id="history-section">
+            <div id="history-title">Ultimos Gifts</div>
+            <div id="history-list"></div>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats-section">
+            <div class="stat-item">
+                <span class="stat-label">Total Gifts</span>
+                <span id="stat-total" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Hatched</span>
+                <span id="stat-hatched" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Top Gifter</span>
+                <span id="stat-top-gifter" class="stat-value">-</span>
+            </div>
+        </div>
+
+        <!-- Celebration overlay -->
+        <div id="celebration-overlay" class="hidden">
+            <div id="celebration-text"></div>
+        </div>
+
+        <!-- Confetti canvas -->
+        <canvas id="confetti-canvas"></canvas>
+
+    </div>
+
+    <script src="confetti.js"></script>
+    <script src="websocket.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

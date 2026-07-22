@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
+  <defs>
+    <linearGradient id="eggGrad25" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff0f5"/>
+      <stop offset="50%" style="stop-color:#f0d0e8"/>
+      <stop offset="100%" style="stop-color:#e0b0d8"/>
+    </linearGradient>
+    <radialGradient id="eggShine25" cx="35%" cy="30%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.7)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggGrad25)" stroke="#d080c0" stroke-width="2"/>
+  <ellipse cx="100" cy="145" rx="75" ry="95" fill="url(#eggShine25)"/>
+  <!-- Spots with more color -->
+  <circle cx="70" cy="120" r="9" fill="rgba(255,107,157,0.2)"/>
+  <circle cx="130" cy="160" r="11" fill="rgba(255,107,157,0.18)"/>
+  <circle cx="85" cy="180" r="7" fill="rgba(255,107,157,0.15)"/>
+  <circle cx="120" cy="110" r="6" fill="rgba(255,107,157,0.15)"/>
+  <!-- Small crack hint -->
+  <path d="M95 55 L98 65 L93 70 L97 78" fill="none" stroke="rgba(150,100,130,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
